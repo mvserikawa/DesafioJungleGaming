@@ -200,6 +200,7 @@ export class ProcessWagerTransactionUseCase {
 
             await this.walletRepo.save(wallet);
             await this.txRepo.save(tx);
+            await this.uow.flush();
 
             const ledgerEntry = WalletLedgerEntry.create({
               id: randomUUID(),
@@ -249,6 +250,7 @@ export class ProcessWagerTransactionUseCase {
 
           await this.walletRepo.save(wallet);
           await this.txRepo.save(tx);
+          await this.uow.flush();
 
           const ledgerEntry = WalletLedgerEntry.create({
             id: randomUUID(),
@@ -348,6 +350,7 @@ export class ProcessWagerTransactionUseCase {
 
           await this.walletRepo.save(wallet);
           await this.txRepo.save(tx);
+          await this.uow.flush();
 
           const ledgerEntry = WalletLedgerEntry.create({
             id: randomUUID(),
@@ -469,6 +472,7 @@ export class ProcessWagerTransactionUseCase {
 
             await this.walletRepo.save(wallet);
             await this.txRepo.save(tx);
+            await this.uow.flush();
 
             const ledgerEntry = WalletLedgerEntry.create({
               id: randomUUID(),
@@ -504,6 +508,7 @@ export class ProcessWagerTransactionUseCase {
 
             await this.walletRepo.save(wallet);
             await this.txRepo.save(tx);
+            await this.uow.flush();
 
             const ledgerEntry = WalletLedgerEntry.create({
               id: randomUUID(),

@@ -49,7 +49,11 @@ export class CreateWalletUseCase {
         initialBalance: initialMoney,
       });
 
+
       await this.walletRepo.save(wallet);
+
+      await this.uow.flush();
+    
 
       // If initial balance is greater than zero, create OPENING transaction and ledger entry
       if (initialMoney.isPositive()) {
@@ -62,6 +66,8 @@ export class CreateWalletUseCase {
         });
 
         await this.txRepo.save(openingTx);
+
+        await this.uow.flush();
 
         const zero = Money.zero(initialMoney.currency);
         const ledgerEntry = WalletLedgerEntry.create({

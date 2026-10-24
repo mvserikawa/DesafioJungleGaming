@@ -6,4 +6,5 @@ export interface TransactionalContext {
 
 export interface UnitOfWorkPort {
   runInTransaction<T>(work: (ctx?: TransactionalContext) => Promise<T>): Promise<T>;
+  flush(): Promise<void>;
 }

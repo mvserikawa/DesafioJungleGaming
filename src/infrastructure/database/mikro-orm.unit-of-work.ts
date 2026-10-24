@@ -9,4 +9,8 @@ export class MikroOrmUnitOfWork implements UnitOfWorkPort {
       return work();
     });
   }
+
+  public async flush(): Promise<void> {
+  await this.em.flush();
+}
 }

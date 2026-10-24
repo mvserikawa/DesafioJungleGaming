@@ -175,15 +175,18 @@ import { SQSClient } from '@aws-sdk/client-sqs';
           maxReceiveCount: 3,
         }),
     },
-    {
-      provide: PendingReferenceWorkerService,
-      inject: [ResolvePendingReferencesUseCase],
-      useFactory: (resolveUseCase) =>
-        new PendingReferenceWorkerService(resolveUseCase, {
-          intervalMs: 5000,
-          batchSize: 50,
-        }),
-    },
+  {
+    provide: PendingReferenceWorkerService,
+    inject: [ResolvePendingReferencesUseCase, EntityManager],
+    useFactory: (
+      resolveUseCase: ResolvePendingReferencesUseCase,
+      em: EntityManager,
+  ) =>
+    new PendingReferenceWorkerService(resolveUseCase, em, {
+      intervalMs: 5000,
+      batchSize: 50,
+    }),
+},
   ],
 })
 export class AppModule {}

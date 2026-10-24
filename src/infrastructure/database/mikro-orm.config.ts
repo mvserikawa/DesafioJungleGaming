@@ -18,7 +18,7 @@ const config: Options = {
     InboxMessageEntity,
     OutboxMessageEntity,
   ],
-  debug: process.env.NODE_ENV === 'development',
+  debug: true,//process.env.NODE_ENV === 'development',
   migrations: {
     path: './src/infrastructure/database/migrations',
     transactional: true,
