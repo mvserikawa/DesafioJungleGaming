@@ -1,3 +1,5 @@
+import { IsEnum, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer';
 import { FailureCode } from '../../domain/errors/failure-codes';
 import { MoneyProps } from '../../domain/models/money';
 import {
@@ -5,45 +7,85 @@ import {
   WagerTransactionStatus,
 } from '../../domain/models/wager-transaction';
 
-export interface CreateWalletDto {
-  playerId: string;
-  initialBalance: MoneyProps;
+export class MoneyDto implements MoneyProps {
+  @IsString()
+  @IsNotEmpty()
+  amount!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  currency!: string;
 }
 
-export interface WalletResponseDto {
-  id: string;
-  playerId: string;
-  balance: MoneyProps;
-  version: number;
-  createdAt: string;
-  updatedAt: string;
+export class CreateWalletDto {
+  @IsString()
+  @IsNotEmpty()
+  playerId!: string;
+
+  @ValidateNested()
+  @Type(() => MoneyDto)
+  initialBalance!: MoneyDto;
 }
 
-export interface SubmitTransactionDto {
-  providerId: string;
-  externalTransactionId: string;
-  playerId: string;
-  walletId: string;
-  roundId: string;
-  gameId: string;
-  kind: WagerTransactionKind;
-  money: MoneyProps;
+export class WalletResponseDto {
+  id!: string;
+  playerId!: string;
+  balance!: MoneyProps;
+  version!: number;
+  createdAt!: string;
+  updatedAt!: string;
+}
+
+export class SubmitTransactionDto {
+  @IsString()
+  @IsNotEmpty()
+  providerId!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  externalTransactionId!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  playerId!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  walletId!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  roundId!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  gameId!: string;
+
+  @IsEnum(WagerTransactionKind)
+  kind!: WagerTransactionKind;
+
+  @ValidateNested()
+  @Type(() => MoneyDto)
+  money!: MoneyDto;
+
+  @IsString()
+  @IsOptional()
   referenceExternalTransactionId?: string;
 }
 
-export interface TransactionResponseDto {
-  transactionId: string;
-  status: WagerTransactionStatus;
+export class TransactionResponseDto {
+  transactionId!: string;
+  status!: WagerTransactionStatus;
   failureCode?: FailureCode;
-  balance: MoneyProps;
-  idempotentReplay: boolean;
+  balance!: MoneyProps;
+  idempotentReplay!: boolean;
 }
 
-export interface ReconcileWalletResponseDto {
-  walletId: string;
-  storedBalance: MoneyProps;
-  calculatedBalance: MoneyProps;
-  difference: MoneyProps;
-  consistent: boolean;
-  checkedEntries: number;
+export class ReconcileWalletResponseDto {
+  walletId!: string;
+  storedBalance!: MoneyProps;
+  calculatedBalance!: MoneyProps;
+  difference!: MoneyProps;
+  consistent!: boolean;
+  checkedEntries!: number;
 }

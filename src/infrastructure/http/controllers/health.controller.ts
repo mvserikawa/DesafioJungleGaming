@@ -1,5 +1,5 @@
 import { Controller, Get, Header, Res } from '@nestjs/common';
-import { Response } from 'express';
+import type { Response } from 'express';
 import { EntityManager } from '@mikro-orm/core';
 import { SQSClient, ListQueuesCommand } from '@aws-sdk/client-sqs';
 import { metricsService } from '../../observability/metrics.service';

@@ -10,7 +10,7 @@ import {
   Post,
   Res,
 } from '@nestjs/common';
-import { Response } from 'express';
+import type { Response } from 'express';
 import { GetTransactionUseCase } from '../../../application/use-cases/get-transaction.use-case';
 import { ProcessWagerTransactionUseCase } from '../../../application/use-cases/process-wager-transaction.use-case';
 import {
