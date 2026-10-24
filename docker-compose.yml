@@ -33,7 +33,7 @@ services:
       - localstack_data:/var/lib/localstack
       - ./scripts/init-sqs.sh:/etc/localstack/init/ready.d/init-sqs.sh
 
-  # Demonstration of 3 concurrent instances running simultaneously
+
   app-1:
     build: .
     container_name: wagering_app_1
