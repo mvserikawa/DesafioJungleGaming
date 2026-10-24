@@ -1,6 +1,6 @@
 # Distributed Wagering Processor — Jungle Gaming 🦧
 
-Financial distributed wagering transaction processor built with **Bun 1.x**, **TypeScript** (strict mode), **NestJS**, **MikroORM**, **PostgreSQL**, and **AWS SQS** (LocalStack).
+Financial distributed wagering transaction processor built with Bun 1.x, TypeScript (strict mode), NestJS, MikroORM, PostgreSQL, e AWS SQS (LocalStack).
 
 ---
 
